@@ -1,74 +1,47 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 27,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Financial Analysis:\n",
-      "-------------------------------------------------------\n",
-      "Total Months: 86\n",
-      "Total Revenue: $38382578\n",
-      "Average Revenue Change: -2315.12\n",
-      "Greatest Increase in Revenue: Feb-2012 ($1926159)\n",
-      "Greatest Decrease in Revenue: Sep-2013 ($-2196167)\n",
-      "\n"
-     ]
-    }
-   ],
-   "source": [
-    "#required modules\n",
-    "import os\n",
-    "import csv\n",
-    "\n",
-    "#set variables\n",
-    "month_counter = 0\n",
-    "sum_revenue = 0\n",
-    "sum_revenue_change = 0\n",
-    "\n",
-    "#connect to data file\n",
-    "budget_dataCSV = os.path.join('budget_data.csv')\n",
-    "\n",
-    "#open data file\n",
-    "with open(budget_dataCSV) as csvFile:\n",
-    "        csvReader = csv.reader(csvFile, delimiter=',')\n",
-    "        next(csvReader, None)\n",
-    "        \n",
-    "        line = next(csvReader,None)\n",
-    "        max_month = line[0]\n",
-    "        min_month = line[0]\n",
-    "        revenue = float(line[1])\n",
-    "        min_revenue = revenue\n",
-    "        max_revenue = revenue\n",
-    "        previous_revenue = revenue\n",
-    "        month_counter = 1\n",
-    "        sum_revenue = float(line[1])\n",
-    "        sum_revenue_change = 0\n",
-    "\n",
-    "#loop\n",
-    "        for line in csvReader:\n",
-    "\n",
-    "#months\n",
-    "            month_counter = month_counter + 1\n",
-    "            revenue = float(line[1])\n",
-    "\n",
-    "#revenue total\n",
-    "            sum_revenue = sum_revenue + revenue\n",
-    "\n",
-    "#MoM change\n",
-    "            revenue_change = revenue - previous_revenue\n",
-    "\n",
-    "# Add change in revenue to net change in \n",
-    "            sum_revenue_change = sum_revenue_change + revenue_change\n",
-    "\n",
-    "#greatest increase and decrease\n",
-    "            if revenue_change > max_revenue:\n",
-    "                max_month = line[0]\n",
-    "                max_revenue = revenue_change\n",
+#required modules,
+    import os
+    import csv
+    
+#set variables
+    month_counter = 0
+    sum_revenue = 0
+    sum_revenue_change = 0
+    
+#connect to data file
+    budget_dataCSV = os.path.join('budget_data.csv')
+    open data file
+    with open(budget_dataCSV) as csvFile:
+    csvReader = csv.reader(csvFile, delimiter=',')
+    next(csvReader, None)
+    line = next(csvReader,None)
+    max_month = line[0]
+    min_month = line[0]
+    revenue = float(line[1])
+    min_revenue = revenue
+    max_revenue = revenue
+    previous_revenue = revenue
+    month_counter = 1
+    sum_revenue = float(line[1])
+    sum_revenue_change = 0
+#loop
+    for line in csvReader:
+#months
+    month_counter = month_counter + 1
+    revenue = float(line[1])
+   
+#revenue total
+    sum_revenue = sum_revenue + revenue
+    
+#MoM change
+    revenue_change = revenue - previous_revenue
+    
+#Add change in revenue to net change in
+    sum_revenue_change = sum_revenue_change + revenue_change
+    
+#greatest increase and decrease
+    "            if revenue_change > max_revenue:
+    "                max_month = line[0]
+    "                max_revenue = revenue_change
     "\n",
     "            elif revenue_change < min_revenue:\n",
     "                min_month = line[0]\n",
@@ -108,36 +81,4 @@
     "        filewriter.write(f\"Greatest Increase in Revenue: {max_month} (${max_revenue})\\n\")\n",
     "        filewriter.write(f\"Greatest Decrease in Revenue: {min_month} (${min_revenue})\\n\")\n",
     "        filewriter.write(\"\")\n",
-    "        filewriter.close()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.7.3"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 4
-}
+    "        filewriter.close()
